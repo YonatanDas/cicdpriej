@@ -1,11 +1,39 @@
 stages: 
   - build
- 
-first_build:
+  - test
+
+build_website:
+  image: node:22-alpine
   stage: build
-  image: node:22
   script:
     - node --version
-    - npm --version
-    - npm ci 
-    - npm run build 
+    - npm --version 
+    - npm ci
+    - npm run build
+  artifacts:
+    paths:
+      - build/
+
+test_artifacts: 
+  image: alpine
+  stage: test
+  script:
+    - test -f build/index.html 
+
+unit_test: 
+ image: alpine
+ stage: test
+ script: 
+   - npm ci
+   - npm test
+ artifacts: 
+   when: always
+   reports: 
+     junit: reports/junit.xml
+     
+netlify:
+  image: node:22-alpine
+  stage: .pre
+  script:
+    - npm install netlify-cli -g
+    - netlify --version 
