@@ -1,11 +1,11 @@
 stages: 
   - build
  
-   first_build:
-   stage: build
-   image: node:22
-   script:
-     - node --version
-     - npm --version
-     - npm ci 
-     - npm run build 
+first_build:
+  stage: build
+  image: node:22
+  script:
+    - node --version
+    - npm --version
+    - npm ci 
+    - npm run build 
