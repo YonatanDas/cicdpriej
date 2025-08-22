@@ -27,7 +27,7 @@ unit_test:
    - npm ci
    - npm test
  artifacts: 
-   whem: always
+   when: always
    reports: 
      junit: reports/junit.xml
      
