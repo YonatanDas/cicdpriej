@@ -10,9 +10,9 @@ build_website:
     - npm --version 
     - npm ci
     - npm run build
-artifacts:
-  paths:
-   - build/
+  artifacts:
+    paths:
+      - build/
 
 test_artifacts: 
   image: alpine
